@@ -10,7 +10,7 @@ import MetaTags from "react-meta-tags";
 
 import "../css/home.css";
 
-class Home extends Component {
+class Favorites extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,7 +25,7 @@ class Home extends Component {
   render() {
     return (
       <div
-        className="HomeContainer"
+        className="FavoritesContainer"
         style={{
           width: "100vw",
           height: "100vh",
@@ -37,24 +37,11 @@ class Home extends Component {
         <TopNavigation toggleSideNavigation={this.toggleSideNavigation} />
         {this.state.sideNavOpen && <SideNavigation />}
         <div id="recipe_card_container" style={{ top: "50px" }}>
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
+          <RecipeCard favorited={"true"} />
         </div>
-        <Link to="addrecipe">
-          <div id="fab_add">
-            <i className="material-icons">add</i>
-          </div>
-        </Link>
       </div>
     );
   }
 }
 
-export default Home;
+export default Favorites;
