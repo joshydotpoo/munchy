@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/recipe_card.css";
+import { withRouter } from "react-router-dom";
 
 class RecipeCard extends Component {
   constructor(props) {
@@ -24,7 +25,11 @@ class RecipeCard extends Component {
           <i className="material-icons">more_horiz</i>
         </div>
         <div className="recipe_card_middle">
-          <img src="http://noteablemusictherapy.com/wp-content/uploads/2017/09/apple.jpg" />
+          <img
+            src="http://noteablemusictherapy.com/wp-content/uploads/2017/09/apple.jpg"
+            onClick={() => this.props.history.push("/recipe")}
+            style={{ cursor: "pointer" }}
+          />
         </div>
         <div className="recipe_card_bottom">
           <div className="recipe_card_like_container">
@@ -63,4 +68,4 @@ class RecipeCard extends Component {
   }
 }
 
-export default RecipeCard;
+export default withRouter(RecipeCard);

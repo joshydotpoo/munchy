@@ -45,7 +45,7 @@ a {
 }
 a:hover {
   color: #282c34;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 #side_nav_favsub_container .side_nav_item span {
   padding-left: 30px;

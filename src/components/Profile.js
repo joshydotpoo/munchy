@@ -4,7 +4,7 @@ import SideNavigation from "./SideNavigation";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
-import { Switch } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import "../css/bootstrap.min.css";
 import "../css/profile.css";
@@ -30,42 +30,40 @@ class Profile extends Component {
         <TopNavigation toggleSideNavigation={this.toggleSideNavigation} />
         {this.state.sideNavOpen && <SideNavigation />}
 
-        <div className="container" style={{ width: "100vw", height: "100vh" }}>
+        <a className="float-right btn btn-outline-dark"> edit</a>
+        <div className="container">
           <div className="row">
-            <div className="col-sm-3">
-              <a className="float-right btn btn-outline-dark"> edit</a>
-              <p className="float-left">
-                <i className="material-icons" style={{ width: "125px" }}>
-                  account
-                </i>
-                <a style={{ fontSize: "8vw" }}>
-                  {" "}
-                  <strong>Guy Fieri </strong>{" "}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-sm-3">
-              <h4>
-                <strong>About Me</strong>
-              </h4>
+            <p>
+              <i className="material-icons" style={{ fontSize: "125px" }}>
+                account_circle
+              </i>
               <p>
                 {" "}
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis.{" "}
+                <strong style={{ fontSize: "35px" }}> Guy Fieri </strong>{" "}
               </p>
-            </div>
+            </p>
           </div>
 
           <div className="row">
-            <div className="col-sm-3">
-              <br />
-              <h4>
-                <strong>My Recipes</strong>
-                <a className="m-3">
+            <h4>
+              {" "}
+              <strong>About Me</strong>{" "}
+            </h4>
+            <p>
+              {" "}
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+              scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+              vulputate at, tempus viverra turpis.{" "}
+            </p>
+          </div>
+
+          <div className="row">
+            <br />
+            <h4>
+              {" "}
+              <strong>My Recipes</strong>
+              <a className="m-3">
+                <Link to="/addrecipe">
                   <button
                     type="button"
                     className="btn btn-secondary, btn btn-outline-dark"
@@ -73,37 +71,42 @@ class Profile extends Component {
                     {" "}
                     Add Recipe{" "}
                   </button>
-                </a>
-              </h4>
-              <br />
-              <h5> Recipe Name </h5>
-              <i className="material-icons" style={{ width: "250px" }}>
-                image
-              </i>
+                </Link>
+              </a>
+            </h4>
+          </div>
+
+          <div className="row">
+            <br />
+            <h5> Recipe Name </h5>
+            <span>
+              <p>
+                <i className="material-icons" style={{ fontSize: "250px" }}>
+                  image
+                </i>
+              </p>
               <p>
                 {" "}
                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
                 scelerisque ante sollicitudin.
               </p>
-            </div>
+            </span>
           </div>
 
           <div className="row">
-            <div className="col-sm-3">
-              <br />
-              <h4>
-                <strong>My Subscriptions</strong>
-              </h4>
-            </div>
+            <br />
+            <h4>
+              <strong>My Subscriptions</strong>
+            </h4>
+            <p />
           </div>
 
           <div className="row">
-            <div className="col-sm-3">
-              <br />
-              <h4>
-                <strong>My Favorites</strong>
-              </h4>
-            </div>
+            <br />
+            <h4>
+              <strong>My Favorites</strong>
+            </h4>
+            <p />
           </div>
         </div>
       </div>

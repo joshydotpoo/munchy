@@ -36,12 +36,6 @@ class SideNavigation extends Component {
               </i>
             </div>
           </Link>
-          <Link to="/subscriptions" className="side_nav_link">
-            <div className="side_nav_item">
-              <span>SUBSCRIPTIONS</span>
-              <i className="material-icons">subscriptions</i>
-            </div>
-          </Link>
         </div>
         <div className="side_nav_item" id="logout_button">
           LOGOUT

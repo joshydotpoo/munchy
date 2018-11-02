@@ -4,6 +4,7 @@ import Subscriptions from "./components/Subscriptions";
 import Profile from "./components/Profile";
 import AddRecipe from "./components/AddRecipe";
 import Favorites from "./components/Favorites";
+import Recipe from "./components/Recipe";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
@@ -36,6 +37,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/addrecipe" component={AddRecipe} />
             <Route path="/favorites" component={Favorites} />
+            <Route path="/recipe" component={Recipe} />
           </Switch>
         </Router>
       </div>
