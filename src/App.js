@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Home from "./components/Home.js";
+import Home from "./components/Home";
+import Subscriptions from "./components/Subscriptions";
+import Profile from "./components/Profile";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
@@ -27,7 +29,9 @@ class App extends Component {
         </MetaTags>
         <Router>
           <Switch>
-            <Route path="/"  exact component={Home} />
+            <Route path="/" exact component={Home} />
+            <Route path="/subscriptions" component={Subscriptions} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </Router>
       </div>

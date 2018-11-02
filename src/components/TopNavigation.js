@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../css/top_navigation.css";
 
 class TopNavigation extends Component {
@@ -21,9 +22,11 @@ class TopNavigation extends Component {
           />
           <i className="material-icons">filter_list</i>
         </div>
-        <i className="material-icons" id="top_nav_account_button">
-          account_circle
-        </i>
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <i className="material-icons" id="top_nav_account_button">
+            account_circle
+          </i>
+        </Link>
       </div>
     );
   }
