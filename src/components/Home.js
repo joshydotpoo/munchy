@@ -47,7 +47,7 @@ class Home extends Component {
           <RecipeCard />
           <RecipeCard />
         </div>
-        <Link to="addrecipe">
+        <Link to="./addrecipe">
           <div id="fab_add">
             <i className="material-icons">add</i>
           </div>

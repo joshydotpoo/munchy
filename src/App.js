@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Home from "./components/Home";
 import Subscriptions from "./components/Subscriptions";
 import Profile from "./components/Profile";
+import AddRecipe from "./components/AddRecipe";
+import Favorites from "./components/Favorites";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
@@ -32,6 +34,8 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/subscriptions" component={Subscriptions} />
             <Route path="/profile" component={Profile} />
+            <Route path="/addrecipe" component={AddRecipe} />
+            <Route path="/favorites" component={Favorites} />
           </Switch>
         </Router>
       </div>
