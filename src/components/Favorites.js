@@ -37,7 +37,7 @@ class Favorites extends Component {
         <TopNavigation toggleSideNavigation={this.toggleSideNavigation} />
         {this.state.sideNavOpen && <SideNavigation />}
         <div id="recipe_card_container" style={{ top: "50px" }}>
-          <RecipeCard favorited={"true"} />
+          <RecipeCard favorited={true} />
         </div>
       </div>
     );

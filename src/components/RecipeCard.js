@@ -6,7 +6,7 @@ class RecipeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorited: false
+      favorited: props.favorited
     };
   }
 
@@ -36,24 +36,16 @@ class RecipeCard extends Component {
             <i className="material-icons">thumb_up</i>
             <span className="recipe_card_likes">15 likes</span>
           </div>
-          {!this.state.favorited && (
-            <i
-              className="material-icons favorite_button"
-              style={{ cursor: "pointer" }}
-              onClick={this.toggleFavorited}
-            >
-              favorite_border
-            </i>
-          )}
-          {this.state.favorited && (
-            <i
-              className="material-icons favorite_button"
-              style={{ color: "red", cursor: "pointer" }}
-              onClick={this.toggleFavorited}
-            >
-              favorite
-            </i>
-          )}
+          <i
+            className="material-icons favorite_button"
+            style={{
+              cursor: "pointer",
+              color: this.state.favorited ? "red" : "#282c34"
+            }}
+            onClick={this.toggleFavorited}
+          >
+            {this.state.favorited ? "favorite" : "favorite_border"}
+          </i>
 
           <div className="recipe_card_rating_container">
             <i className="material-icons">star</i>
