@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link href="css/rc.css" rel="stylesheet" />
   <link href="css/header.css" rel="stylesheet" />
+  <link href="css/fab.css" rel="stylesheet" />
   <style>
     * {
       font-family: "Work Sans", sans-serif;
@@ -24,6 +25,9 @@
       margin: 50px;
       color: #3e3e42;
     }
+    .hdr_back {
+      visibility: hidden;
+    }
     .header:not["backable"] > .hdr_back {
       visibility: hidden;
     }
@@ -39,6 +43,8 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      if(localStorage.getItem("name") == null)
+        window.location = "login.html";
       initHeaderNav();
       initRecipeCards();
     });
@@ -48,8 +54,8 @@
   <div class="header">
     <div class="hdr_back"><i class="material-icons">chevron_left</i></div>
     <div class="hdr_nav">
-      <div class="hdr_recipes hdr_link hdrn_item"><a href="#recipes">Recipes</a></div>
-      <div class="hdr_recipes hdr_link hdrn_item"><a href="#mealplan">Meal Plan</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
       <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
       <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
     </div>
@@ -81,6 +87,7 @@
         <div class="rca_bookmark"><i class="material-icons">bookmark_border</i></div>
       </div>
     </div>
+    <div id="fab_add" onclick="window.location='add_recipe.html'"><i class="material-icons">add</i></div>
   </div>
 </body>
 </html>

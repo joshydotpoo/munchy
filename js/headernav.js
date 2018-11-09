@@ -23,7 +23,6 @@ function initHeaderNav() {
   $(".hdr_account i").click(function() {
     if (!$(".hdr_account").hasClass("active_nav")) {
       $(".hdr_account").toggleClass("active_nav");
-      console.log("class on");
       $(".hdrn_item").hide();
       $(".hdr_account")
         .show()
@@ -32,17 +31,20 @@ function initHeaderNav() {
         "<i class='material-icons hdr_account_back hdr_account_appended' style='float: left'>chevron_left</i>"
       );
       $(".hdr_nav").append(
-        "<span class='hdr_account_name hdr_account_appended'>Rajiv</span>"
+        "<span class='hdr_account_name hdr_account_appended'>"+localStorage.getItem("name")+"</span>"
       );
       $(".hdr_nav").append(
         "<button class='hdr_account_signout hdr_account_appended'>Sign Out</button>"
       );
       $(".hdr_account_back").on("click", function() {
-        console.log("class off");
         $(".hdrn_item").show();
         $(".hdr_account").css({ float: "right", width: "45px" });
         $(".hdr_account_appended").remove();
         $(".hdr_account").removeClass("active_nav");
+      });
+      $(".hdr_account_signout").on("click", function() {
+        localStorage.setItem("name", null);
+        window.location = "login.html";
       });
     }
   });

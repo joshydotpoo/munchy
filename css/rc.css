@@ -1,6 +1,6 @@
 .rc {
   width: 300px;
-  height: 475px;
+  height: 450px;
   background: pink;
   overflow: hidden;
   border-radius: 5px;
@@ -20,7 +20,7 @@
 
 .rc_main {
   width: calc(100% - 20px);
-  height: 180px;
+  height: 155px;
   padding: 10px;
 }
 .rc_main > * {

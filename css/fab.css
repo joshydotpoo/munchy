@@ -1,0 +1,21 @@
+#fab_add {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  float: right;
+  margin-right: 15px;
+  cursor: pointer;
+  background-color: #db4437;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  bottom: 25px;
+  right: 25px;
+  color: #fcfcfc;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+#fab_add > * {
+  align-self: center;
+}

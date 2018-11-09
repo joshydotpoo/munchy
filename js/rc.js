@@ -1,4 +1,5 @@
 function initRecipeCards() {
+  $(".rc_preview").click(function() {window.location="view_recipe.html"});
   $(".rca_bookmark").click(function() {
     var activeBM = $(this).hasClass("activeBM");
     if (activeBM) {
@@ -15,7 +16,7 @@ function initRecipeCards() {
         .css("color", "#E0115F");
       var rc_data = createRCObject($(this).parents(".rc"));
       localStorage.setItem(rc_data.title, JSON.stringify(rc_data));
-      
+
     }
   });
 }

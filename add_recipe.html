@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recipe Name</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+ <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ <style>
+         .card-inner{margin-left: 4rem;}
+ </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!--user profile and username -->
+    <div class="row">
+        <div class="col-sm-2">
+             <p class="float-left">
+                 <img src="account.svg" alt="user" width="50px">
+                <a><strong>Pasta_Lover62</strong></a>
+            </p>
+        </div>
+    </div>
+
+   <!--recipe name and image-->
+    <div class="row">
+        <div class="col-sm-3">
+          <div class="text-center">
+          <textarea> Recipe Name
+            </textarea>
+            <button class="btn">Insert Image/Video</button>
+            <img src="image.svg" alt="recipe image" width="250px">
+          </div>
+
+    <!--list of ingredients-->
+      <h5 class="pl-3">Ingredients</h5>
+      <p>
+          <textarea> Enter Ingredients </textarea>
+      </p>
+
+      <!-- list of steps with videos -->
+      <ul class="list-unstyled">
+          <li class="media">
+            <button class="btn">Insert Image/Video</button>
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">step 1</h5>
+                <textarea> Enter Steps </textarea>
+            </div>
+          </li>
+          <li class="media my-4">
+            <button class="btn">Insert Image/Video</button>
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">step 2</h5>
+                <textarea> Enter Steps </textarea>
+            </div>
+          </li>
+          <li class="media">
+            <button class="btn">Insert Image/Video</button>
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">step 3</h5>
+                <textarea> Enter Steps </textarea>
+            </div>
+          </li>
+          <li class="media my-4">
+            <button class="btn">Insert Image/Video</button>
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">step 4</h5>
+                <textarea> Enter Steps </textarea>
+              </div>
+            </li>
+        </ul>
+        <button class="btn">Add Step</button>
+        <button class="btn">Delete Step</button>
+
+        <!-- complete video -->
+        <div class="text-center">
+             <img src="play.svg" alt="recipe image" width="250px">
+             <button class="btn">Insert Image/Video</button>
+        </div>
+
+        <!-- Submit or cancel -->
+        <div class="text-right">
+
+          <button type="button" class="btn btn-success">Submit Recipe</button>
+          <button type="button" class="btn btn-danger">Cancel Recipe</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
