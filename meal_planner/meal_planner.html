@@ -84,7 +84,7 @@
                 <button class="add_field_button_cook">+ Cook</button>
                 <button class="add_field_button_eat_out">+ Eat Out</button>
                 <div class="cook">
-                    <label for="recipes">Cooking</label>
+                    <label>Cooking</label> 
                     <datalist id="bookmarks_list"></datalist>
                 </div>
                 <div class="eating_out">
@@ -304,6 +304,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
     <!--Saturday tab -->
     <div id="Saturday" class="tab-pane fade">
@@ -406,16 +407,16 @@
     var dataList = document.getElementById('bookmarks_list');
     var input = document.getElementById('recipe_name');
     var bookmarks = ['pasta','salad','fruit'];
-  
-        // Loop over the bookmarks array.
-        bookmarks.forEach(function(item) {
+    
+    // Loop over the bookmarks array.
+    bookmarks.forEach(function(item) {
         // Create a new <option> element.
         var option = document.createElement('option');
-        // Set the value using the item in the JSON array.
+        // Set the value using the item in the bookmarks array.
         option.value = item;
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
-      });
+    });
 
     $(document).ready(function() {
 	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
