@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Munchy - Home</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="css/rc.css" rel="stylesheet" />
+  <link href="css/header.css" rel="stylesheet" />
+  <link href="css/fab.css" rel="stylesheet" />
+  <style>
+    * {
+      font-family: "Work Sans", sans-serif;
+    }
+    i {
+      user-select: none;
+    }
+    .container {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      width:  calc(100% - 120px);
+      padding: 15px;
+      margin: 50px;
+      color: #3e3e42;
+    }
+    .hdr_back {
+      visibility: hidden;
+    }
+    .header:not["backable"] > .hdr_back {
+      visibility: hidden;
+    }
+    .ctn_label {
+      width: 100%;
+      font-size: 30px;
+      margin: 5px 5px 20px 5px;
+    }
+  </style>
+  <script type="text/javascript" src="js/headernav.js"></script>
+  <script type="text/javascript" src="js/rc.js"></script>
+  <script type="text/javascript" src="js/Database.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      if(localStorage.getItem("username") == null)
+        window.location = "login.html";
+      var recipeData = "Peanut butter and Jelly Sandwich:pbj.jpg:BFRecipe1.html|Tomato Egg Stirfry:rice1.jpg:BFRecipe2.html|Cheese Omelette:egg5.jpg:BFRecipe3.html|Homemade Burger:bg5.jpg:DRecipe1.html|Seasoned Chicken Breast:chick1.jpg:DRecipe2|Korean-style Gochujang Ground Beef:gb1.jpg:DRecipe3|Chicken Lettuce Wrap:chickL1.jpg:Lunch1.html|Microwave Bagel Sandwich:bag2.jpg:Lunch2.html|Spinach Artichoke Turkey Panini:turk1.jpg:Lunch3.html";
+      addAllRC(recipeData);
+      initHeaderNav();
+      initRecipeCards();
+      const database = new Database();
+      const user = new User(localStorage.getItem("username"), database);
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <div class="hdr_back"><i class="material-icons">chevron_left</i></div>
+    <div class="hdr_nav">
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
+      <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+      <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+    </div>
+    <div class="hdr_title">Munchy</div>
+  </div>
+  <div class="container">
+    <div class="ctn_label">Recipes</div>
+    <!-- <div class="rc">
+      <div class="rc_preview">
+        <div class="rcp_propic"></div>
+      </div>
+      <div class="rc_main">
+        <div class="rcm_title">Fancy Pasta Name</div>
+        <div class="rcm_desc">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div>
+      </div>
+      <div class="rc_action">
+        <div class="rca_bookmark"><i class="material-icons">bookmark_border</i></div>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc_preview">
+        <div class="rcp_propic"></div>
+      </div>
+      <div class="rc_main">
+        <div class="rcm_title">Another Recipe Title</div>
+        <div class="rcm_desc">Hello there, why are you reading this ... to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div>
+      </div>
+      <div class="rc_action">
+        <div class="rca_bookmark"><i class="material-icons">bookmark_border</i></div>
+      </div>
+    </div> -->
+    <!-- <div id="fab_add" onclick="window.location='add_recipe.html'"><i class="material-icons">add</i></div> -->
+  </div>
+</body>
+</html>
