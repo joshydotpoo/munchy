@@ -1,354 +1,458 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">  
+  <script src="js/Database.js"></script>
 
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
+  <style>
+    h5{padding-left:10px;}
+    .eating_out{padding-left:10px;}
+    .cook{padding-left:10px;}
 
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  right: 0;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+    #myInput {
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        max-width: 100%;
+    }
 
-/* form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
+    #myInput:focus {outline: 3px solid #ddd;}
 
-/* Style the tab */
-.tab {
-    float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width: 30%;
-    height: 300px;
-}
+    .dropdown {
+        position:relative;
+        float:right; 
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 17px;
-}
+    .dropdown-content {
+        display: none;
+        position: relative;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+        overflow:auto;
+        width:100%;
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-    background-color: #ddd;
-}
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
 
-/* Create an active/current "tab button" class */
-.tab button.active {
-    background-color: #ccc;
-}
+    .dropdown a:hover {background-color: #ddd;}
 
-/* Style the tab content */
-.tabcontent {
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
-    width: 70%;
-    border-left: none;
-    height: 450px;
-    display: none;
-}
-
-/* Clear floats after the tab */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* buttons */
-.btn {
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.sm_btn {
-    border: 2px solid black;
-    border-color: #e7e7e7;
-    background-color: white;
-    padding: 7px 14px;
-    color: black;
-    font-size: 12px;
-    cursor: pointer;
-
-}
-
-.default {
-    border-color: #e7e7e7;
-    color: black;
-}
-
-.default:hover {
-    background: #e7e7e7;
-}
-
-</style>
+    .show {display: block;}
+    .hide {display:none;}
+    </style>
 </head>
 
 <body>
 
-<h2 style="text-align:center">Meal Planner</h2>
-<p> Select a day to plan lunchtime meals: </p>
+<div class="container">
+  <h2>Meal Planner</h2>
+  <p>Click on a day to plan your meals.</p>
 
-<div class="tab">
-  <button class="tablinks" onmouseover="openDay(event, 'Sunday')">Sunday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Monday')">Monday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Tuesday')">Tuesday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Wednesday')">Wednesday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Thursday')">Thursday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Friday')">Friday</button>
-  <button class="tablinks" onmouseover="openDay(event, 'Saturday')">Saturday</button>
-</div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#Monday">Monday</a></li>
+    <li><a data-toggle="tab" href="#Tuesday">Tuesday</a></li>
+    <li><a data-toggle="tab" href="#Wednesday">Wednesday</a></li>
+    <li><a data-toggle="tab" href="#Thursday">Thursday</a></li>
+    <li><a data-toggle="tab" href="#Friday">Friday</a></li>
+    <li><a data-toggle="tab" href="#Saturday">Saturday</a></li>
+    <li><a data-toggle="tab" href="#Sunday">Sunday</a></li>
+  </ul>
 
+  <div class="tab-content">
 
-<!--"Cook" Form -->
-<div class="form-popup" id="myForm" onsubmit="return false;">
-  <form class="form-container">
-    <h3>What's Cookin' ?</h3>
+<!--Monday tab -->
+<div id="Monday" class="tab-pane fade in active">
+        <div class="input_fields_wrap">
+        <h3>Breakfast</h3>
+            <div>
+                <button class="add_field_button_cook">+ Cook</button>
+                <button class="add_field_button_eat_out">+ Eat Out</button>
+                <div class="cook">
+                    <label>Cooking</label> 
+                    <datalist id="bookmarks_list"></datalist>
+                </div>
+                <div class="eating_out">
+                    <label>Eating Out</label>
+                </div>
+            </div>
+        </div>
+        <div class="input_fields_wrap">
+            <h3>Lunch</h3>
+            <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <label for="recipes">Cooking</label>
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                        <label>Eating Out</label>
+                    </div>
+                </div>
+            </div>
+        <div class="input_fields_wrap">
+            <h3>Dinner</h3>
+            <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <label for="recipes">Cooking</label>
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                        <label>Eating Out</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="row">
-    <label for="event"><b>Recipe Name</b></label>
-    <button class="sm_btn"> Add from Bookmarks</button>
-    <input type="text" id="content" name="recipe" required>
-    </div>
+<!--Tuesday tab -->
+    <div id="Tuesday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="row">
-    <label for="time"><b>Prep Time</b></label>
-    <input type="text" id="prepTime" name="prepTime">
-	</div>
+    <!--Wednesday tab -->
+    <div id="Wednesday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <button type="submit" class="sm_btn" onclick="displayEvent1(), closeForm(), reset()">Submit</button>
-    <button type="button" class="sm_btn cancel" onclick="closeForm(), reset()">Cancel</button>
-  </form>
-</div>
+    <!--Thursday tab -->
+    <div id="Thursday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<!--"Eat Out" Form -->
-<div class="form-popup" id="myForm_2" onsubmit="return false;">
-  <form class="form-container">
-    <h3>Gettin' Grub</h3>
+    <!--Friday tab -->
+    <div id="Friday" class="tab-pane fade">
+        <div class="input_fields_wrap">
+            <h3>Breakfast</h3>
+                <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <label for="recipes">Cooking</label>
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                        <label>Eating Out</label>
+                    </div>
+                </div>
+            <div class="input_fields_wrap">
+                <h3>Lunch</h3>
+                <div>
+                        <button class="add_field_button_cook">+ Cook</button>
+                        <button class="add_field_button_eat_out">+ Eat Out</button>
+                        <div class="cook">
+                            <label for="recipes">Cooking</label>
+                            <datalist id="bookmarks_list"></datalist>
+                        </div>
+                        <div class="eating_out">
+                            <label>Eating Out</label>
+                        </div>
+                    </div>
+                </div>
+            <div class="input_fields_wrap">
+                <h3>Dinner</h3>
+                <div>
+                        <button class="add_field_button_cook">+ Cook</button>
+                        <button class="add_field_button_eat_out">+ Eat Out</button>
+                        <div class="cook">
+                            <label for="recipes">Cooking</label>
+                            <datalist id="bookmarks_list"></datalist>
+                        </div>
+                        <div class="eating_out">
+                            <label>Eating Out</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<div class="row">
-    <label for="time"><b>Venue</b></label>
-    <input type="text" id="venue" name="venue">
-	</div>
+    <!--Saturday tab -->
+    <div id="Saturday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="row">
-    <label for="event"><b>Cost</b></label>
-    <input type="text" id="cost" name="cost">
-    </div>
-
-
-     <button type="submit" class="sm_btn" onclick="displayEvent2(), closeForm_2(), reset()">Submit</button>
-    <button type="button" class="sm_btn cancel" onclick="closeForm_2(), reset()">Cancel</button>
-  </form>
-</div>
-
-<!-- Tabs with days of the week -->
-
-<div id="Sunday" class="tabcontent">
-   <p>
-       <!-- div where form outputs will be displayed -->
-        <div id="main"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Monday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Monday"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Tuesday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Tuesday"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Wednesday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Wednesdsay"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Thursday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Thursday"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Friday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Friday"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div id="Saturday" class="tabcontent">
-    <p>
-        <!-- div where form outputs will be displayed -->
-        <div id="main_Saturday"></div>
-        <!-- buttons to add or clear content -->
-        <button class="btn default" onclick="closeForm_2(), openForm()">Cook</button>
-        <button class="btn default" onclick="closeForm(), openForm_2()">Eat Out</button>
-        <button class="btn default" onclick="closeForm(), closeForm_2(), clearDisplay()"> Clear </button>
-    </p>
-</div>
-
-<div class="clearfix"></div>
-
+    <!--Sunday tab -->
+    <div id="Sunday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div> 
+    </div>              
+</body>
 
 <script>
 
-/* functions to handle meal plan tabs */
-function openDay(evt, Day) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+//access database    
+const database = new Database(); 
+const user = new User(localStorage.getItem("username"),database); 
+
+// Get the <datalist> and <input> elements.
+    var dataList = document.getElementById('bookmarks_list');
+    var input = document.getElementById('recipe_name');
+    var bookmarks = user.bookmarks; 
+    
+    // Loop over the bookmarks array.
+    bookmarks.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the bookmarks array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+    });
+
+    $(document).ready(function() {
+	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+	var add_button_cook     = $(".add_field_button_cook"); //Add button ID 
+	var add_button_eat_out     = $(".add_field_button_eat_out"); //Add button ID
+
+	$(add_button_cook).click(function(e){ //on add input button click
+		e.preventDefault();
+        var wrapper = $(this).parent().parent();     
+		$(wrapper).find(".cook").append('<div><input type="text" id="recipe_name" list="bookmarks_list" placeholder="e.g fried rice"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+         });
+
+    $(add_button_eat_out).click(function(e){ //on add input button click
+		e.preventDefault();
+        var wrapper = $(this).parent().parent(); 
+		$(wrapper).append('<div class="eating_out"><input type="text" id="eating_out" placeholder="e.g. Subway, $7"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+	});
+	
+	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+		e.preventDefault(); $(this).parent('div').remove(); x--;
+	});
+
+     function enter_detector(e) {
+    // if enter key is pressed lose focus
+    if(e.which==13||e.keyCode==13){
+	    this.blur();
+        }
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(Day).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-/* functions to handle forms */
-
-/* display content from Cook Form */
-function displayEvent1() {
-    var eventType = "Cook";
-    var content = document.getElementById("content").value;
-    var time = document.getElementById("prepTime").value;
-
-    var div = document.createElement("div");
-    div.id = "myDiv";
-    div.style.width = "100px";
-    div.style.height = "100px";
-
-    var heading = document.createElement("H3");
-    var text = document.createTextNode(eventType);
-    heading.appendChild(text);
-    div.appendChild(heading);
-
-    var paragraph =  document.createElement("P");
-    var text = document.createTextNode(content);
-    paragraph.appendChild(text);
-    var br = document.createElement("br");
-    paragraph.appendChild(br);
-    var text_2 = document.createTextNode(time);
-    paragraph.appendChild(text_2);
-    div.appendChild(paragraph);
-
-    document.getElementById("main").appendChild(div);
-
-    }
-
-/* display content from Eat Out Form */
-function displayEvent2() {
-    var eventType = "Eat Out";
-    var content = document.getElementById("cost").value;
-    var venue = document.getElementById("venue").value;
-
-    var div = document.createElement("div");
-    div.id = "myDiv";
-    div.style.width = "100px";
-    div.style.height = "100px";
-
-    var heading = document.createElement("H3");
-    var text = document.createTextNode(eventType);
-    heading.appendChild(text);
-    div.appendChild(heading);
-
-    var paragraph =  document.createElement("P");
-    var text = document.createTextNode(content);
-    paragraph.appendChild(text);
-    var br = document.createElement("br");
-    paragraph.appendChild(br);
-    var text_2 = document.createTextNode(venue);
-    paragraph.appendChild(text_2);
-    div.appendChild(paragraph);
-
-    document.getElementById("main").appendChild(div);
-    }
-
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-    }
-
-function openForm_2() {
-    document.getElementById("myForm_2").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
-
-function closeForm_2() {
-    document.getElementById("myForm_2").style.display = "none";
-}
-
-function reset() {
-    document.getElementById("myForm").reset();
-}
-
-function clearDisplay() {
-    var elem = document.getElementById("myDiv");
-    elem.parentNode.removeChild(elem);
- }
+    document.getElementById('recipe_name').addEventListener('keyup',enter_detector,false);
+    });
 
 </script>
+</html>
 
-</body>
-</html> 
