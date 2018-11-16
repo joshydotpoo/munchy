@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="main.css">  
+  <link rel="stylesheet" href="css/main.css">  
+  <script src="js/Database.js"></script>
 
   <style>
     h5{padding-left:10px;}
@@ -403,10 +404,13 @@
 
 <script>
 
+//access database    
+const database = new Database(); 
+
 // Get the <datalist> and <input> elements.
     var dataList = document.getElementById('bookmarks_list');
     var input = document.getElementById('recipe_name');
-    var bookmarks = ['pasta','salad','fruit'];
+    var bookmarks = user.bookmarks; 
     
     // Loop over the bookmarks array.
     bookmarks.forEach(function(item) {
