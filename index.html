@@ -46,6 +46,8 @@
 
       if(localStorage.getItem("username") == null)
         window.location = "login.html";
+      var recipeData = "";
+      addAllRC(recipeData);
       initHeaderNav();
       initRecipeCards();
       const database = new Database();
@@ -90,7 +92,7 @@
         <div class="rca_bookmark"><i class="material-icons">bookmark_border</i></div>
       </div>
     </div>
-    <div id="fab_add" onclick="window.location='add_recipe.html'"><i class="material-icons">add</i></div>
+    <!-- <div id="fab_add" onclick="window.location='add_recipe.html'"><i class="material-icons">add</i></div> -->
   </div>
 </body>
 </html>

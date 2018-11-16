@@ -106,6 +106,10 @@ class User {
     this.bookmarks = bm;
     this.update();
   }
+  isBookmarked(title) {
+    var index = this.bookmarks.indexOf(title);
+    return (index != -1);
+  }
   toString() {
     return JSON.stringify(this);
   }

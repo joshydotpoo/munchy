@@ -1,6 +1,33 @@
 <script src="Database.js"></script>
 <script>
-const db = new Database();
-const user = new User(localStorage.getItem("username"), db);
-alert(user.bookmarks);
+  var reader; //GLOBAL File Reader object for demo purpose only
+
+    /**
+     * Check for the various File API support.
+     */
+    function checkFileAPI() {
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            reader = new FileReader();
+            return true;
+        } else {
+            alert('The File APIs are not fully supported by your browser. Fallback required.');
+            return false;
+        }
+    }
+
+    /**
+     * read text input
+     */
+    function readText(filePath) {
+      var str = "";
+      var txtFile = new File(["foo"], "filePath", {
+        type: "text/plain",
+      });
+      txtFile.open("r");
+      while (!txtFile.eof) {
+        // read each line of text
+        str += txtFile.readln() + "\n";
+      }
+      console.log(str);
+    }
 </script>

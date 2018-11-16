@@ -31,7 +31,7 @@ function initHeaderNav() {
         "<i class='material-icons hdr_account_back hdr_account_appended' style='float: left'>chevron_left</i>"
       );
       $(".hdr_nav").append(
-        "<span class='hdr_account_name hdr_account_appended'>"+localStorage.getItem("name")+"</span>"
+        "<span class='hdr_account_name hdr_account_appended'>"+localStorage.getItem("username")+"</span>"
       );
       $(".hdr_nav").append(
         "<button class='hdr_account_signout hdr_account_appended'>Sign Out</button>"
