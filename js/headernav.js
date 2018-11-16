@@ -43,7 +43,7 @@ function initHeaderNav() {
         $(".hdr_account").removeClass("active_nav");
       });
       $(".hdr_account_signout").on("click", function() {
-        localStorage.setItem("name", null);
+        localStorage.setItem("username", null);
         window.location = "login.html";
       });
     }

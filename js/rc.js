@@ -8,15 +8,16 @@ function initRecipeCards() {
         .children("i")
         .html("bookmark_border")
         .css("color", "#3e3e42");
+        getUser().removeBookmark($(this).parents(".rc").find(".rcm_title").html());
     } else { // activate
       $(this).addClass("activeBM");
       $(this)
         .children("i")
         .html("bookmark")
         .css("color", "#E0115F");
-      var rc_data = createRCObject($(this).parents(".rc"));
-      localStorage.setItem(rc_data.title, JSON.stringify(rc_data));
-
+      // var rc_data = createRCObject($(this).parents(".rc"));
+      // localStorage.setItem(rc_data.title, JSON.stringify(rc_data));
+      getUser().addBookmark($(this).parents(".rc").find(".rcm_title").html());
     }
   });
 }

@@ -1,0 +1,6 @@
+<script src="Database.js"></script>
+<script>
+const db = new Database();
+const user = new User(localStorage.getItem("username"), db);
+alert(user.bookmarks);
+</script>

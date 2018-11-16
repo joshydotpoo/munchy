@@ -39,14 +39,17 @@
   </style>
   <script type="text/javascript" src="js/headernav.js"></script>
   <script type="text/javascript" src="js/rc.js"></script>
-
+  <script type="text/javascript" src="js/Database.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      if(localStorage.getItem("name") == null)
+
+      if(localStorage.getItem("username") == null)
         window.location = "login.html";
       initHeaderNav();
       initRecipeCards();
+      const database = new Database();
+      const user = new User(localStorage.getItem("username"), database);
     });
   </script>
 </head>
