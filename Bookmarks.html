@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Munchy - Bookmarks</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="css/rc.css" rel="stylesheet" />
+  <link href="css/header.css" rel="stylesheet" />
+  <link href="css/fab.css" rel="stylesheet" />
+  <style>
+    * {
+      font-family: "Work Sans", sans-serif;
+    }
+    .active_page {
+        text-decoration:underline;
+    }
+    i {
+      user-select: none;
+    }
+    .container {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      width:  calc(100% - 120px);
+      padding: 15px;
+      margin: 50px; 
+      color: #3e3e42;
+    }
+   /* .hdr_back {
+      visibility: hidden;
+    }
+    .header:not["backable"] > .hdr_back {
+      visibility: hidden;
+    } */
+    .ctn_label {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      font-size: 35px;
+      /*margin: 5px 5px 20px 5px;*/
+    }
+  </style>
+  <script type="text/javascript" src="js/headernav.js"></script>
+  <script type="text/javascript" src="js/rc.js"></script>
+  <script type="text/javascript" src="js/Database.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      if(localStorage.getItem("username") == null)
+        window.location = "login.html";
+      var recipeData = "Cheese Omelette:egg5.jpg:BFRecipe3.html|Homemade Burger:bg5.jpg:DRecipe1.html|Chicken Lettuce Wrap:chickL1.jpg:Lunch1.html";
+      addAllRC(recipeData);
+      initHeaderNav();
+      initRecipeCards();
+      const database = new Database();
+      const user = new User(localStorage.getItem("username"), database);
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='index.html'">chevron_left</i></div>
+    <div class="hdr_nav">
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Home</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item active_page"><a href="bookmarks.html">Bookmarks</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
+      <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+      <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+    </div>
+    <div class="hdr_title">Munchy</div>
+  </div>
+  <div class="container">
+    <div class="ctn_label">Bookmarks</div>
+  </div>
+</body>
+</html>
