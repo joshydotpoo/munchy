@@ -13,6 +13,9 @@
     * {
       font-family: "Work Sans", sans-serif;
     }
+    .active_page {
+        text-decoration:underline;
+    }
     i {
       user-select: none;
     }
@@ -22,7 +25,7 @@
       top: 0px;
       width:  calc(100% - 120px);
       padding: 15px;
-      margin: 50px;
+      margin: 50px; 
       color: #3e3e42;
     }
     .hdr_back {
@@ -33,9 +36,11 @@
     }
     .ctn_label {
       width: 100%;
-      font-size: 30px;
-      margin: 5px 5px 20px 5px;
-    }
+      padding: 10px;
+      text-align: center;
+      font-size: 35px;
+      /*margin: 5px 5px 20px 5px;*/
+      }
   </style>
   <script type="text/javascript" src="js/headernav.js"></script>
   <script type="text/javascript" src="js/rc.js"></script>
@@ -58,7 +63,8 @@
   <div class="header">
     <div class="hdr_back"><i class="material-icons">chevron_left</i></div>
     <div class="hdr_nav">
-      <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item active_page"><a href="index.html">Home</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="bookmarks.html">Bookmarks</a></div>
       <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
       <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
       <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
@@ -66,7 +72,7 @@
     <div class="hdr_title">Munchy</div>
   </div>
   <div class="container">
-    <div class="ctn_label">Recipes</div>
+    <div class="ctn_label"> Popular Recipes </div>
     <!-- <div class="rc">
       <div class="rc_preview">
         <div class="rcp_propic"></div>
