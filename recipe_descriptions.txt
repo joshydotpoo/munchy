@@ -1,0 +1,38 @@
+BFRecipe1: Peanutbutter and Jelly Sandwich
+
+- A classic, sweet and salty treat for a quick snack or breakfast on-the-go. Try whole grain bread and organic peanut butter for a healthy and nutritious twist!
+
+BFRecipe2: Egg and Tomato stir-fry
+
+- Spice up your egg scramble with fresh, juicy tomatoes and garlic. Try brown rice for a healthier alternative. A simple and delicious recipe for breakfast, lunch, or dinner.
+
+BFRecipe3: Cheese Omelette
+
+- For those cheese-lovers out there, this is for you! A simple, quick recipe that will melt in your mouth... try adding veggies for a  rich and nutritious alternative. 
+
+Lunch1: Chicken Lettuce Wrap
+
+- Cooked chicken, raspberries, blue cheese, and walnuts wrapped in fresh lettuce leaves. Great for snacking or sharing with friends!
+
+Lunch2: Microwave Bagel Sandwich
+
+- A quick, simple, and tasty treat: toasted whole grain bagel, egg whites, cheese, fresh spinach and avocado slices. Great option for a hearty breakfast or packed lunch. 
+
+Lunch3: Spinach Artichoke Turkey Panini
+
+- Toasted panini sandwich made with turkey, goat cheese, spinach, and artichoke hearts on ciabatta bread.
+
+DRecipe1: Homemade Burger
+
+- Try this simple recipe for a delicious home-made beef burger with your favorite veggies and condiments to top.  
+
+DRecipe2: Seasoned Chicken Breast
+
+- Soft and tender broiled chicken breast seasoned with garlic and onion powder. Eat as is, or chop up and add to salads.  
+
+DRecipe3: Korean-style Gochujang Ground Beef
+
+- Try this simple but delicious recipe for spicy ground beef, korean-style! Great with a side of white or brown rice.  
+
+
+
