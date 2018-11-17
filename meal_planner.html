@@ -18,10 +18,49 @@
   <script src="js/Database.js"></script>
 
   <style>
-    h5{padding-left:10px;}
-    .eating_out{padding-left:10px;}
-    .cook{padding-left:10px;}
+      * {
+      font-family: "Work Sans", sans-serif;
+    }
+    .active_page {
+        text-decoration:underline;
+    }
+    i {
+      user-select: none;
+    }
+    .container {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      width:  calc(100% - 120px);
+      padding: 15px;
+      margin: 50px; 
+      color: #3e3e42;
+    }
 
+    /*
+    .hdr_back {
+      visibility: hidden;
+    }
+    .header:not["backable"] > .hdr_back {
+      visibility: hidden;
+    }
+    */
+    .ctn_label {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      font-size: 35px;
+      /*margin: 5px 5px 20px 5px;*/
+      }
+    h5 {
+        padding-left:10px;
+    }
+    .eating_out {
+        padding-left:10px;
+    }
+    .cook {
+        padding-left:10px;
+        }
     #myInput {
         background-image: url('searchicon.png');
         background-position: 14px 12px;
@@ -33,14 +72,13 @@
         width: 100%;
         max-width: 100%;
     }
-
-    #myInput:focus {outline: 3px solid #ddd;}
-
+    #myInput:focus {
+        outline: 3px solid #ddd;
+        }
     .dropdown {
         position:relative;
         float:right;
     }
-
     .dropdown-content {
         display: none;
         position: relative;
@@ -52,38 +90,39 @@
         overflow:auto;
         width:100%;
     }
-
     .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
     }
-
-    .dropdown a:hover {background-color: #ddd;}
-
-    .show {display: block;}
-    .hide {display:none;}
+    .dropdown a:hover {
+        background-color: #ddd;
+        }
+    .show {
+        display: block;
+    }
     </style>
 </head>
 
 <body>
-  <div class="header">
-    <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='index.html'">chevron_left</i></div>
-    <div class="hdr_nav">
-      <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
-      <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
-      <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
-      <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+    <div class="header">
+        <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='bookmarks.html'">chevron_left</i></div>
+        <div class="hdr_nav">
+            <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Home</a></div>
+            <div class="hdr_recipes hdr_link hdrn_item"><a href="bookmarks.html">Bookmarks</a></div>
+            <div class="hdr_recipes hdr_link hdrn_item active_page"><a href="meal_planner.html">Meal Plan</a></div>
+            <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+            <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+        </div>
+        <div class="hdr_title">Munchy</div>
     </div>
-    <div class="hdr_title">Munchy</div>
-  </div>
-<div class="container">
-  <h2>Meal Planner</h2>
-  <p>Click on a day to plan your meals.</p>
+    <div class="container">
+    <div class="ctn_label">Meal Planner</div>
+    <p style="text-align:center">Click on a day to plan your meals. Bookmark your favorite recipes to add them into your planner. </p>
 
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#Monday">Monday</a></li>
+    <li class="active"><a  data-toggle="tab" href="#Monday">Monday</a></li>
     <li><a data-toggle="tab" href="#Tuesday">Tuesday</a></li>
     <li><a data-toggle="tab" href="#Wednesday">Wednesday</a></li>
     <li><a data-toggle="tab" href="#Thursday">Thursday</a></li>
@@ -92,7 +131,7 @@
     <li><a data-toggle="tab" href="#Sunday">Sunday</a></li>
   </ul>
 
-  <div class="tab-content">
+  <div class="tab-content" style="padding:20px">
 
 <!--Monday tab -->
 <div id="Monday" class="tab-pane fade in active">
