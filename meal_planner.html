@@ -55,6 +55,16 @@
     h5 {
         padding-left:10px;
     }
+    .button_other, .button_other:active, .button_other:focus{
+        border: 1px solid #3e3e42;
+        background: white;
+        color:  #3e3e42;
+    }
+    
+    .button_other:hover{
+        background: #3e3e42;
+        color:  white;
+    }
     .eating_out {
         padding-left:10px;
     }
@@ -102,6 +112,9 @@
     .show {
         display: block;
     }
+    .display_box {
+        border-style:solid;border-width:1px;border-color:#3e3e42;margin-top:25px;
+    }
     </style>
 </head>
 
@@ -135,17 +148,16 @@
 
 <!--Monday tab -->
 <div id="Monday" class="tab-pane fade in active">
+    <div class="col-sm-6">
         <div class="input_fields_wrap">
         <h3>Breakfast</h3>
             <div>
                 <button class="add_field_button_cook">+ Cook</button>
                 <button class="add_field_button_eat_out">+ Eat Out</button>
                 <div class="cook">
-                    <label>Cooking</label>
                     <datalist id="bookmarks_list"></datalist>
                 </div>
                 <div class="eating_out">
-                    <label>Eating Out</label>
                 </div>
             </div>
         </div>
@@ -155,11 +167,9 @@
                     <button class="add_field_button_cook">+ Cook</button>
                     <button class="add_field_button_eat_out">+ Eat Out</button>
                     <div class="cook">
-                        <label for="recipes">Cooking</label>
                         <datalist id="bookmarks_list"></datalist>
                     </div>
                     <div class="eating_out">
-                        <label>Eating Out</label>
                     </div>
                 </div>
             </div>
@@ -169,15 +179,16 @@
                     <button class="add_field_button_cook">+ Cook</button>
                     <button class="add_field_button_eat_out">+ Eat Out</button>
                     <div class="cook">
-                        <label for="recipes">Cooking</label>
                         <datalist id="bookmarks_list"></datalist>
                     </div>
                     <div class="eating_out">
-                        <label>Eating Out</label>
                     </div>
                 </div>
             </div>
+            <button class="button_other submit_form_button" style="margin-top:50px;">Submit</button> 
+            <button class="button_other clear_form_button" style="margin-top:50px;"> Clear </button>
         </div>
+    </div>
 
 <!--Tuesday tab -->
     <div id="Tuesday" class="tab-pane fade">
@@ -460,11 +471,11 @@
 
 <script>
 
-//access database
-const database = new Database();
-const user = new User(localStorage.getItem("username"),database);
+    //access database
+    const database = new Database();
+    const user = new User(localStorage.getItem("username"),database);
 
-// Get the <datalist> and <input> elements.
+    // Get the <datalist> and <input> elements.
     var dataList = document.getElementById('bookmarks_list');
     var input = document.getElementById('recipe_name');
     var bookmarks = user.bookmarks;
@@ -478,35 +489,87 @@ const user = new User(localStorage.getItem("username"),database);
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
     });
-
+    
     $(document).ready(function() {
 	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+    var display_wrapper = $(".display_form_input"); //Display wrapper
 	var add_button_cook     = $(".add_field_button_cook"); //Add button ID
 	var add_button_eat_out     = $(".add_field_button_eat_out"); //Add button ID
+    var submit_form            = $(".submit_form_button"); //Add button ID
+    var clear_form             = $(".clear_form_button"); //Add button ID
 
-	$(add_button_cook).click(function(e){ //on add input button click
+	$(add_button_cook).click(function(e){ //on cook button click
 		e.preventDefault();
         var wrapper = $(this).parent().parent();
-		$(wrapper).find(".cook").append('<div><input type="text" id="recipe_name" list="bookmarks_list" placeholder="e.g fried rice"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+		$(wrapper).find(".cook").append('<div><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="e.g fried rice"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
          });
 
-    $(add_button_eat_out).click(function(e){ //on add input button click
+    $(add_button_eat_out).click(function(e){ //on eat out button click
 		e.preventDefault();
         var wrapper = $(this).parent().parent();
-		$(wrapper).append('<div class="eating_out"><input type="text" id="eating_out" placeholder="e.g. Subway, $7"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+		$(wrapper).append('<div class="eating_out"><input class="expense_input" type="text" id="eating_out" placeholder="e.g. Subway, $7"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
 	});
 
 	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
 		e.preventDefault(); $(this).parent('div').remove(); x--;
 	});
 
-     function enter_detector(e) {
-    // if enter key is pressed lose focus
-    if(e.which==13||e.keyCode==13){
-	    this.blur();
+    $(submit_form).click(function(e){ //on submit button click, display form input
+
+    /*    var wrapper = $(this).parent().find("div.input_fields_wrap").first();
+        var display_wrapper = $(this).parent().next().children("div"); 
+        var recipe_breakfast = $(wrapper).find(".recipe_input").val(); 
+        var recipe_lunch = $(wrapper).next().find(".recipe_input").val(); 
+        var recipe_dinner = $(wrapper).next().next().find(".recipe_input").val();  
+        var expense_breakfast = $(wrapper).find('.expense_input').val(); 
+        var expense_lunch = $(wrapper).next().find('.expense_input').val();
+        var expense_dinner = $(wrapper).next().next().find('.expense_input').val();
+
+        while(true) {
+
+        //clear display
+        $(display_wrapper).find('ul.recipe_list').children("li").remove(); 
+        $(display_wrapper).find('ul.expenses_list').children("li").remove(); 
+        
+        if ( recipe_breakfast !==  undefined && recipe_breakfast !== "" && bookmarks.indexOf(recipe_breakfast) > -1) { 
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_breakfast+"</li>");
+            console.log('breakfast recipe ' + recipe_breakfast); }  
+
+        if (expense_breakfast !==  undefined && expense_breakfast !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_breakfast+"</li>");
+            console.log('breakfast expense ' + expense_breakfast); }  
+
+        if (recipe_lunch !==  undefined && recipe_lunch !== "" && bookmarks.indexOf(recipe_lunch) > -1) {
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_lunch+"</li>");
+            console.log('lunch recipe ' + recipe_lunch); } 
+
+        if (expense_lunch !==  undefined && expense_lunch !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_lunch+"</li>");
+            console.log('lunch expense ' + expense_lunch); } 
+
+        if (recipe_dinner !==  undefined && recipe_dinner !== "" && bookmarks.indexOf(recipe_dinner) > -1) {
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_dinner+"</li>"); 
+            console.log('dinner recipe ' + recipe_dinner);} 
+
+        if (expense_dinner !==  undefined && expense_dinner !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_dinner+"</li>");
+            console.log('dinner expense ' + expense_dinner); } 
+
+        break;
+
         }
-    }
-    document.getElementById('recipe_name').addEventListener('keyup',enter_detector,false);
+
+        */
+
+         $(this).parent().find("div.input_fields_wrap").find('.remove_field').remove();
+    });
+
+     $(clear_form).click(function(e){ //on clear button click, clear form
+        $(this).parent("div").find("div.input_fields_wrap").find('.recipe_input').remove(); 
+        $(this).parent("div").find("div.input_fields_wrap").find('.remove_field').remove(); 
+        $(this).parent("div").find("div.input_fields_wrap").find('.expense_input').remove();
+    });
+
     });
 
 </script>
