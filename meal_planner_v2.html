@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="css/rc.css" rel="stylesheet" />
+  <link href="css/header.css" rel="stylesheet" />
+  <link href="css/fab.css" rel="stylesheet" />
+<script type="text/javascript" src="js/headernav.js"></script>
+  <script src="js/Database.js"></script>
+
+  <style>
+      * {
+      font-family: "Work Sans", sans-serif;
+    }
+    .active_page {
+        text-decoration:underline;
+    }
+    i {
+      user-select: none;
+    }
+    .container {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      width:  calc(100% - 120px);
+      padding: 15px;
+      margin: 50px; 
+      color: #3e3e42;
+    }
+
+    /*
+    .hdr_back {
+      visibility: hidden;
+    }
+    .header:not["backable"] > .hdr_back {
+      visibility: hidden;
+    }
+    */
+    .ctn_label {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      font-size: 35px;
+      /*margin: 5px 5px 20px 5px;*/
+      }
+    h5 {
+        padding-left:10px;
+    }
+    .button_other, .button_other:active, .button_other:focus{
+        border: 1px solid #3e3e42;
+        background: white;
+        color:  #3e3e42;
+    }
+    
+    .button_other:hover{
+        background: #3e3e42;
+        color:  white;
+    }
+    .eating_out {
+        padding-left:10px;
+    }
+    .cook {
+        padding-left:10px;
+        }
+    #myInput {
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        max-width: 100%;
+    }
+    #myInput:focus {
+        outline: 3px solid #ddd;
+        }
+    .dropdown {
+        position:relative;
+        float:right;
+    }
+    .dropdown-content {
+        display: none;
+        position: relative;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+        overflow:auto;
+        width:100%;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .dropdown a:hover {
+        background-color: #ddd;
+        }
+    .show {
+        display: block;
+    }
+    .display_box {
+        border-style:solid;border-width:1px;border-color:#3e3e42;margin-top:25px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='bookmarks.html'">chevron_left</i></div>
+        <div class="hdr_nav">
+            <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Home</a></div>
+            <div class="hdr_recipes hdr_link hdrn_item"><a href="bookmarks.html">Bookmarks</a></div>
+            <div class="hdr_recipes hdr_link hdrn_item active_page"><a href="meal_planner.html">Meal Plan</a></div>
+            <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+            <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+        </div>
+        <div class="hdr_title">Munchy</div>
+    </div>
+    <div class="container">
+    <div class="ctn_label">Meal Planner</div>
+    <p style="text-align:center">Click on a day to plan your meals. Bookmark your favorite recipes to add them into your planner. </p>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a  data-toggle="tab" href="#Monday">Monday</a></li>
+    <li><a data-toggle="tab" href="#Tuesday">Tuesday</a></li>
+    <li><a data-toggle="tab" href="#Wednesday">Wednesday</a></li>
+    <li><a data-toggle="tab" href="#Thursday">Thursday</a></li>
+    <li><a data-toggle="tab" href="#Friday">Friday</a></li>
+    <li><a data-toggle="tab" href="#Saturday">Saturday</a></li>
+    <li><a data-toggle="tab" href="#Sunday">Sunday</a></li>
+  </ul>
+
+  <div class="tab-content" style="padding:20px">
+
+<!--Monday tab -->
+<div id="Monday" class="tab-pane fade in active">
+    <div class="col-sm-6">
+        <div class="input_fields_wrap">
+        <h3>Breakfast</h3>
+            <div>
+                <button class="add_field_button_cook">+ Cook</button>
+                <button class="add_field_button_eat_out">+ Eat Out</button>
+                <div class="cook">
+                    <datalist id="bookmarks_list"></datalist>
+                </div>
+                <div class="eating_out">
+                </div>
+            </div>
+        </div>
+        <div class="input_fields_wrap">
+            <h3>Lunch</h3>
+            <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                    </div>
+                </div>
+            </div>
+        <div class="input_fields_wrap">
+            <h3>Dinner</h3>
+            <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                    </div>
+                </div>
+            </div>
+            <button class="button_other submit_form_button" style="margin-top:50px;">Submit</button> 
+            <button class="button_other clear_form_button" style="margin-top:50px;"> Clear </button>
+        </div>
+        <div class="col-sm-6">
+            <div class="display_form_input display_box">
+                <span>
+                    <h5 style="padding-left:30px; padding-top:10px;">Recipe Links:</h5>
+                    <ul class="recipe_list"></ul>
+                    <h5 style="padding-left:30px">Eating Out Expenses:</h5>
+                    <ul class="expenses_list"></ul>
+                </span>
+            </div>
+        </div>
+    </div>
+
+<!--Tuesday tab -->
+    <div id="Tuesday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!--Wednesday tab -->
+    <div id="Wednesday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!--Thursday tab -->
+    <div id="Thursday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!--Friday tab -->
+    <div id="Friday" class="tab-pane fade">
+        <div class="input_fields_wrap">
+            <h3>Breakfast</h3>
+                <div>
+                    <button class="add_field_button_cook">+ Cook</button>
+                    <button class="add_field_button_eat_out">+ Eat Out</button>
+                    <div class="cook">
+                        <label for="recipes">Cooking</label>
+                        <datalist id="bookmarks_list"></datalist>
+                    </div>
+                    <div class="eating_out">
+                        <label>Eating Out</label>
+                    </div>
+                </div>
+            <div class="input_fields_wrap">
+                <h3>Lunch</h3>
+                <div>
+                        <button class="add_field_button_cook">+ Cook</button>
+                        <button class="add_field_button_eat_out">+ Eat Out</button>
+                        <div class="cook">
+                            <label for="recipes">Cooking</label>
+                            <datalist id="bookmarks_list"></datalist>
+                        </div>
+                        <div class="eating_out">
+                            <label>Eating Out</label>
+                        </div>
+                    </div>
+                </div>
+            <div class="input_fields_wrap">
+                <h3>Dinner</h3>
+                <div>
+                        <button class="add_field_button_cook">+ Cook</button>
+                        <button class="add_field_button_eat_out">+ Eat Out</button>
+                        <div class="cook">
+                            <label for="recipes">Cooking</label>
+                            <datalist id="bookmarks_list"></datalist>
+                        </div>
+                        <div class="eating_out">
+                            <label>Eating Out</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--Saturday tab -->
+    <div id="Saturday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!--Sunday tab -->
+    <div id="Sunday" class="tab-pane fade">
+            <div class="input_fields_wrap">
+                    <h3>Breakfast</h3>
+                        <div>
+                            <button class="add_field_button_cook">+ Cook</button>
+                            <button class="add_field_button_eat_out">+ Eat Out</button>
+                            <div class="cook">
+                                <label for="recipes">Cooking</label>
+                                <datalist id="bookmarks_list"></datalist>
+                            </div>
+                            <div class="eating_out">
+                                <label>Eating Out</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_fields_wrap">
+                        <h3>Lunch</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input_fields_wrap">
+                        <h3>Dinner</h3>
+                        <div>
+                                <button class="add_field_button_cook">+ Cook</button>
+                                <button class="add_field_button_eat_out">+ Eat Out</button>
+                                <div class="cook">
+                                    <label for="recipes">Cooking</label>
+                                    <datalist id="bookmarks_list"></datalist>
+                                </div>
+                                <div class="eating_out">
+                                    <label>Eating Out</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    //access database
+    const database = new Database();
+    const user = new User(localStorage.getItem("username"),database);
+
+    // Get the <datalist> and <input> elements.
+    var dataList = document.getElementById('bookmarks_list');
+    var input = document.getElementById('recipe_name');
+    var bookmarks = user.bookmarks;
+
+    // Loop over the bookmarks array.
+    bookmarks.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the bookmarks array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+    });
+    
+    $(document).ready(function() {
+	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+    var display_wrapper = $(".display_form_input"); //Display wrapper
+	var add_button_cook     = $(".add_field_button_cook"); //Add button ID
+	var add_button_eat_out     = $(".add_field_button_eat_out"); //Add button ID
+    var submit_form            = $(".submit_form_button"); //Add button ID
+    var clear_form             = $(".clear_form_button"); //Add button ID
+
+	$(add_button_cook).click(function(e){ //on cook button click
+		e.preventDefault();
+        var wrapper = $(this).parent().parent();
+		$(wrapper).find(".cook").append('<div><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="e.g fried rice"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+         });
+
+    $(add_button_eat_out).click(function(e){ //on eat out button click
+		e.preventDefault();
+        var wrapper = $(this).parent().parent();
+		$(wrapper).append('<div class="eating_out"><input class="expense_input" type="text" id="eating_out" placeholder="e.g. Subway, $7"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+	});
+
+	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+		e.preventDefault(); $(this).parent('div').remove(); x--;
+	});
+
+    $(submit_form).click(function(e){ //on submit button click, display form input
+
+        var wrapper = $(this).parent().find("div.input_fields_wrap").first();
+        var display_wrapper = $(this).parent().next().children("div"); 
+        var recipe_breakfast = $(wrapper).find(".recipe_input").val(); 
+        var recipe_lunch = $(wrapper).next().find(".recipe_input").val(); 
+        var recipe_dinner = $(wrapper).next().next().find(".recipe_input").val();  
+        var expense_breakfast = $(wrapper).find('.expense_input').val(); 
+        var expense_lunch = $(wrapper).next().find('.expense_input').val();
+        var expense_dinner = $(wrapper).next().next().find('.expense_input').val();
+
+        while(true) {
+
+        //clear display
+        $(display_wrapper).find('ul.recipe_list').children("li").remove(); 
+        $(display_wrapper).find('ul.expenses_list').children("li").remove(); 
+        
+        if ( recipe_breakfast !==  undefined && recipe_breakfast !== "" && bookmarks.indexOf(recipe_breakfast) > -1) { 
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_breakfast+"</li>");
+            console.log('breakfast recipe ' + recipe_breakfast); }  
+
+        if (expense_breakfast !==  undefined && expense_breakfast !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_breakfast+"</li>");
+            console.log('breakfast expense ' + expense_breakfast); }  
+
+        if (recipe_lunch !==  undefined && recipe_lunch !== "" && bookmarks.indexOf(recipe_lunch) > -1) {
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_lunch+"</li>");
+            console.log('lunch recipe ' + recipe_lunch); } 
+
+        if (expense_lunch !==  undefined && expense_lunch !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_lunch+"</li>");
+            console.log('lunch expense ' + expense_lunch); } 
+
+        if (recipe_dinner !==  undefined && recipe_dinner !== "" && bookmarks.indexOf(recipe_dinner) > -1) {
+            $(display_wrapper).find("ul.recipe_list").append("<li>"+recipe_dinner+"</li>"); 
+            console.log('dinner recipe ' + recipe_dinner);} 
+
+        if (expense_dinner !==  undefined && expense_dinner !== "") {
+            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_dinner+"</li>");
+            console.log('dinner expense ' + expense_dinner); } 
+
+        break;
+
+        }
+
+     //  $(this).parent().find("div.input_fields_wrap").find('.recipe_input').remove();
+         $(this).parent().find("div.input_fields_wrap").find('.remove_field').remove();
+     //  $(this).parent().find("div.input_fields_wrap").find('.expense_input').remove();
+        
+
+    });
+
+     $(clear_form).click(function(e){ //on clear button click, clear form
+        $(this).parent("div").find("div.input_fields_wrap").find('.recipe_input').remove(); 
+        $(this).parent("div").find("div.input_fields_wrap").find('.remove_field').remove(); 
+        $(this).parent("div").find("div.input_fields_wrap").find('.expense_input').remove();
+        $(this).parent().next().children("div").find('ul.recipe_list').children("li").remove(); 
+        $(this).parent().next().children("div").find('ul.expenses_list').children("li").remove(); 
+    });
+
+    });
+
+</script>
+</html>
