@@ -474,7 +474,7 @@ dd {
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid palevioletred;
+  border: 1px solid #3e3e42;
   border-radius: 4px;
   background: pink;
   color: #3e3e42;
@@ -491,13 +491,13 @@ dd {
   line-height: 1; }
 
 .button:hover, a.button:hover, button:hover, [type=submit]:hover, [type=reset]:hover, [type=button]:hover {
-  border: 1px solid palevioletred;
+  border: 1px solid #3e3e42;
   background: palevioletred;
   color: #3e3e42;
   text-decoration: none; }
 
 .button:focus, .button:active, a.button:focus, a.button:active, button:focus, button:active, [type=submit]:focus, [type=submit]:active, [type=reset]:focus, [type=reset]:active, [type=button]:focus, [type=button]:active {
-  border: 1px solid palevioletred;
+  border: 1px solid #3e3e42;
   background: pink;
   color:  #3e3e42;
   text-decoration: none; }
@@ -556,8 +556,8 @@ a.full-button {
   background: transparent;
   margin-bottom: .5rem;
   font-size: 1rem;
-  width: 40%;
-  max-width: 40%;
+  width: 60%;
+  max-width: 60%;
   line-height: 1; }
 
 [type=color]:hover, [type=date]:hover, [type=datetime]:hover, [type=datetime-local]:hover, [type=email]:hover, [type=month]:hover, [type=number]:hover, [type=password]:hover, [type=search]:hover, [type=tel]:hover, [type=text]:hover, [type=url]:hover, [type=week]:hover, [type=time]:hover, select:hover, textarea:hover {
