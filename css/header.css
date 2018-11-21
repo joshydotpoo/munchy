@@ -20,7 +20,7 @@
   width: 30%;
 }
 .hdr_nav {
-  width: 60%;
+  width: 35%;
   float: right;
   text-align: right; 
   /*background: pink; */
@@ -72,7 +72,7 @@
   display: inline-block;
 }
 .hdr_account_name {
-  display: inline-block;
+  display:inline-block;
   line-height: 45px;
 }
 .hdr_account_signout {

@@ -26,7 +26,7 @@ function initHeaderNav() {
       $(".hdrn_item").hide();
       $(".hdr_account")
         .show()
-        .css({ float: "left", width: "90px" });
+        .css({ float: "left", width: "35%" });
       $(".hdr_account").append(
         "<i class='material-icons hdr_account_back hdr_account_appended' style='float: left'>chevron_left</i>"
       );
