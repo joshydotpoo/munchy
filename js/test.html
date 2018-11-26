@@ -1,33 +1,6 @@
 <script src="Database.js"></script>
+<script src="MealPlanner.js"></script>
 <script>
-  var reader; //GLOBAL File Reader object for demo purpose only
-
-    /**
-     * Check for the various File API support.
-     */
-    function checkFileAPI() {
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            reader = new FileReader();
-            return true;
-        } else {
-            alert('The File APIs are not fully supported by your browser. Fallback required.');
-            return false;
-        }
-    }
-
-    /**
-     * read text input
-     */
-    function readText(filePath) {
-      var str = "";
-      var txtFile = new File(["foo"], "filePath", {
-        type: "text/plain",
-      });
-      txtFile.open("r");
-      while (!txtFile.eof) {
-        // read each line of text
-        str += txtFile.readln() + "\n";
-      }
-      console.log(str);
-    }
+var db = new Database();
+var mp = new MealPlannerObject("mpidusername", db);
 </script>

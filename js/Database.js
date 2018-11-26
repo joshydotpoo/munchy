@@ -7,7 +7,6 @@ class Map {
   addData(key, value) {
     var keyIndex = this.keys.indexOf(key);
     if(keyIndex == -1) { // field doesn't exist
-      console.log("field doesn't exist");
       this.keys.push(key);
       this.values.push(new Array());
       keyIndex = this.keys.length - 1;
@@ -93,6 +92,7 @@ class User {
     this.bookmarks = new Array();
     this.database = database;
     this.getUpdate();
+    this.update();
   }
   setUsername(username) {this.username = username; this.update();}
   setPassword(password) {this.password; this.update();}
@@ -143,3 +143,22 @@ function getUser() {
     return null;
   }
 }
+
+/*
+
+Database db = ... ;
+MealPlannerObject mealPlanner = new MealPlannerObject(username);
+// breakfast
+for each meal
+  MealObject meal = new MealObject(...);
+  mealPlanner.addMeal(meal, day);
+// lunch ...
+// dinner ...
+db.insert(key, mealPlanner.toString());
+
+
+mealPlanner = db.getObject("meal planner");
+monday = mealPlanner.getDay("monday");
+monday.getBreakfastMeals()
+
+*/
