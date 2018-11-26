@@ -1,5 +1,7 @@
 <head>
   <style>
+    h1, h2, h3, li {font-family: "Work Sans", sans-serif;}
+    img {left: 0%; padding: 10px;} 
   </style>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
@@ -12,65 +14,45 @@
 <div class="header">
   <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='../index.html'">chevron_left</i></div>
   <div class="hdr_nav">
-    <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
-    <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
-    <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
-    <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="../index.html">Home</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="../bookmarks.html">Bookmarks</a></div>
+      <div class="hdr_recipes hdr_link hdrn_item"><a href="../meal_planner.html">Meal Plan</a></div>
+      <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+      <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
   </div>
   <div class="hdr_title">Munchy</div>
 </div>
-<div className="container">
+<div className="container" style="padding:80px;">
   <div className="row">
-    <div className="col-sm-12">
-      <i className="material-icons" style={{ fontSize: "75px" }}>
-        account_circle
-      </i>
-      <strong>Pasta_Lover62</strong>
-      <a className="float-right btn btn-outline-primary">
-        {" "}
-        <i className="Subscribe" /> Subscribe
-      </a>
-    </div>
-  </div>
-  <div className="row">
-    <div className="col-sm-1" />
     <div className="col-sm-5">
-      <h2> Peanutbutter and Jelly Sandwich </h2>
-      <img src="pbj.jpg" alt="Peanutbutter and Jelly Sandwich" style="width:250px;height:250px;">
+      <h1> Peanut-Butter and Jelly Sandwich </h1>
+      <img src="pbj.jpg" alt="Peanutbutter and Jelly Sandwich" style="width:300px; padding-left:30px;">
+    </div>
     </div>
 
-    <div className="col-sm-4">
-      <h4>Ingredients</h4>
+    <div className="col-sm-6">
+      <h2>Ingredients</h2>
       <ol>
         <li>Peanutbutter </li>
         <li>Jelly </li>
         <li>2 Slices of bread </li>
       </ol>
     </div>
-  </div>
+  
   <div className="row">
-    <ul className="list-unstyled">
-      <li className="media">
-        <img src="toast.jpg" alt="toast bread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 1</h4>
-          Toast the two slices of bread in toaster oven at 350 degrees for 4 minutes
-        </div>
-      </li>
-      <li className="media my-4">
-        <img src="spread.jpg" alt="Spread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 2</h4>
-          Spread peanutbutter on one side of each piece of toast, then spread the jelly on top of the peanutbutter for one or both of each toast
-        </div>
-      </li>
-      <li className="media">
-        <img src="bread.jpg" alt="Finished" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 3</h4>
-          Put the two pieces of bread back together, cut diagonally, and serve
-        </div>
-      </li>
+  <ul>
+    <li> 
+      <h3>Step 1:</h3> Toast the two slices of bread in toaster oven at 350 degrees for 4 minutes. <br>
+      <img src="toast.jpg" alt="toast bread" style="width:250px;">   
+    </li>
+    <li> 
+        <h3>Step 2:</h3> Spread peanutbutter on one side of each piece of toast, then spread the jelly on top of the peanutbutter for one or both of each toast. <br>
+        <img src="spread.jpg" alt="Spread" style="width:250px;">   
+    </li>
+    <li> 
+        <h3>Step 3:</h3>Put the two pieces of bread back together, cut diagonally, and serve. <br>
+        <img src="bread.jpg" alt="Finished" style="width:250px;">  
+    </li>
     </ul>
   </div>
 </div>

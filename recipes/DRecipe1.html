@@ -1,5 +1,7 @@
 <head>
   <style>
+     h1, h2, h3, li {font-family: "Work Sans", sans-serif;}
+    img {left: 0%; padding: 10px;} 
   </style>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
@@ -10,85 +12,57 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <div class="header">
-  <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='../index.html'">chevron_left</i></div>
-  <div class="hdr_nav">
-    <div class="hdr_recipes hdr_link hdrn_item"><a href="index.html">Recipes</a></div>
-    <div class="hdr_recipes hdr_link hdrn_item"><a href="meal_planner.html">Meal Plan</a></div>
-    <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
-    <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
+  <div class="hdr_back"><i class="material-icons" style="cursor: pointer;" onclick="window.location='../index.html'">chevron_left</i></div>  <div class="hdr_nav">
+    <div class="hdr_recipes hdr_link hdrn_item"><a href="../index.html">Home</a></div>
+    <div class="hdr_recipes hdr_link hdrn_item"><a href="../bookmarks.html">Bookmarks</a></div>
+    <div class="hdr_recipes hdr_link hdrn_item"><a href="../meal_planner.html">Meal Plan</a></div>
+      <div class="hdr_account hdrn_item"><i class="material-icons">account_box</i></div>
+      <div class="hdr_search  hdrn_item"><i class="material-icons">search</i></div>
   </div>
   <div class="hdr_title">Munchy</div>
 </div>
-<div className="container">
+<div className="container" style="padding:80px;">
   <div className="row">
-    <div className="col-sm-12">
-      <i className="material-icons" style={{ fontSize: "75px" }}>
-        account_circle
-      </i>
-      <strong>Pasta_Lover62</strong>
-      <a className="float-right btn btn-outline-primary">
-        {" "}
-        <i className="Subscribe" /> Subscribe
-      </a>
-    </div>
-  </div>
-  <div className="row">
-    <div className="col-sm-1" />
     <div className="col-sm-5">
       <h2> Homemade Burger </h2>
-      <img src="bg5.jpg" alt="" style="width:250px;height:250px;">
+      <img src="bg5.jpg" alt="" style="width:400px;">
     </div>
 
-    <div className="col-sm-4">
-      <h4>Ingredients</h4>
-      <ol>
-        <li>1 lb Ground Beef</li>
-        <li>Burger Buns </li>
-        <li>Butter </li>
-        <li>Lettuce</li>
-        <li>Cheese </li>
-        <li>Tomato </li>
-        <li>Pepper </li>
-      </ol>
-    </div>
+<div className="col-sm-6">
+    <h2>Ingredients</h2>
+    <ol>
+      <li>1 lb Ground Beef</li>
+      <li>Burger Buns </li>
+      <li>Butter </li>
+      <li>Lettuce</li>
+      <li>Cheese </li>
+      <li>Tomato </li>
+      <li>Pepper </li>
+    </ol>
   </div>
-  <div className="row">
-    <ul className="list-unstyled">
-      <li className="media">
-        <img src="bg1.jpg" alt="toast bread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 1</h4>
-          Shape the ground beef into patties.
-        </div>
-      </li>
-      <li className="media my-4">
-        <img src="bg2.jpg" alt="Spread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 2</h4>
-          Season both sides of burger patties with pepper
-        </div>
-      </li>
-      <li className="media">
-        <img src="bg3.jpg" alt="toast bread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 3</h4>
-          Heat oil on medium-high. Gently place patties on the pan, 3 minutes each side.
-        </div>
-      </li>
-      <li className="media">
-        <img src="bg4.jpg" alt="toast bread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 3</h4>
-          Butter each side of bun, toast on the pan.
-        </div>
-      </li>
-      <li className="media">
-        <img src="bg5.jpg" alt="toast bread" style="width:250px;height:250px;">
-        <div className="media-body">
-          <h4 className="mt-0 mb-1">step 3</h4>
-          Assemble burger with cheese, lettuce, patty, buns, tomato.
-        </div>
-      </li>
-    </ul>
-  </div>
+
+<div className="row">
+<ul>
+  <li> 
+    <h3>Step 1:</h3> Shape the ground beef into patties. <br>
+    <img src="bg1.jpg" alt="toast bread" style="width:250px;">
+  </li>
+  <li> 
+      <h3>Step 2:</h3>Season both sides of burger patties with pepper. <br>
+      <img src="bg2.jpg" alt="Spread" style="width:250px;">
+  </li>
+  <li> 
+      <h3>Step 3:</h3>Heat oil on medium-high. Gently place patties on the pan, 3 minutes each side. <br>
+      <img src="bg3.jpg" alt="toast bread" style="width:250px;">
+  </li>
+  <li> 
+      <h3>Step 4:</h3> Butter each side of bun, toast on the pan. <br>
+      <img src="bg4.jpg" alt="toast bread" style="width:250px;">
+  </li>
+  <li> 
+      <h3>Step 5:</h3> Assemble burger with cheese, lettuce, patty, buns, tomato. <br>
+      <img src="bg5.jpg" alt="toast bread" style="width:250px;">
+  </ul>
 </div>
+</div>
+

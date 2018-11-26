@@ -14,15 +14,16 @@
   font-family: "Pacifico", cursive;
   margin: auto;
   line-height: 45px;
-  float: right;
-  font-size: 17px;
-  margin: 10px;
+  /*float: right;*/
+  font-size: 30px;
+  /*margin: 10px; */
   width: 30%;
 }
 .hdr_nav {
-  width: 375px;
+  width: 35%;
   float: right;
-  background: pink;
+  text-align: right; 
+  /*background: pink; */
   border-bottom-left-radius: 5px;
   padding-left: 25px;
 }
@@ -31,7 +32,7 @@
   height: 45px;
   margin: 10px;
   vertical-align: middle;
-  text-align: center;
+  text-align: center; 
 }
 .hdr_link a {
   text-decoration: none;
@@ -53,7 +54,7 @@
   margin: 10px;
 }
 .hdr_search i {
-  font-size: 25px;
+  font-size: 30px;
   padding: 10px;
 }
 .hdr_account {
@@ -66,12 +67,12 @@
   margin: 10px;
 }
 .hdr_account i {
-  font-size: 25px;
+  font-size: 30px;
   padding: 10px;
   display: inline-block;
 }
 .hdr_account_name {
-  display: inline-block;
+  display:inline-block;
   line-height: 45px;
 }
 .hdr_account_signout {
