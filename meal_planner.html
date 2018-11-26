@@ -256,47 +256,103 @@
 
         var wrapper = $(this).parent().find("div.input_fields_wrap").first();
         var display_wrapper = $(this).parent().next().children("div"); 
-        var recipe_breakfast = $(wrapper).find(".recipe_input").val();
-        var recipe_lunch = $(wrapper).next().find(".recipe_input").val(); 
-        var recipe_dinner = $(wrapper).next().next().find(".recipe_input").val();  
-        var expense_breakfast = $(wrapper).find('.expense_input').val(); 
-        var expense_lunch = $(wrapper).next().find('.expense_input').val();
-        var expense_dinner = $(wrapper).next().next().find('.expense_input').val(); 
+        
+        //add breakfast recipes to array 
+        var breakfast_cook_items = $(wrapper).find(".recipe_input");
+        var breakfast_cook_array = [] ; 
+        $(breakfast_cook_items).each(function () {
+            breakfast_cook_array.push($(this).val());
+        });
+        console.log(breakfast_cook_array); 
 
-        //clear display
+        //add lunch recipes to array
+        var lunch_cook_items = $(wrapper).next().find(".recipe_input"); 
+        var lunch_cook_array = [] ; 
+        $(lunch_cook_items).each(function () {
+            lunch_cook_array.push($(this).val());
+        });
+        console.log(lunch_cook_array); 
+
+        //add dinner recipes to array 
+        var dinner_cook_items = $(wrapper).next().next().find(".recipe_input");
+        var dinner_cook_array = [] ;
+        $(dinner_cook_items).each(function () {
+            dinner_cook_array.push($(this).val());
+        });
+        console.log(dinner_cook_array);
+
+        //add breakfast eating out items to array 
+        var breakfast_eat_out_items = $(wrapper).find('.expense_input');
+        var breakfast_eat_out_array = [];
+        $(breakfast_eat_out_items).each(function () {
+            breakfast_eat_out_array.push($(this).val());
+        });
+        console.log(breakfast_eat_out_array); 
+
+        //add lunch eating out items to array 
+        var lunch_eat_out_items = $(wrapper).next().find('.expense_input');
+        var lunch_eat_out_array = []; 
+        $(lunch_eat_out_items).each(function () {
+            lunch_eat_out_array.push($(this).val());
+        });
+        console.log(lunch_eat_out_array); 
+        
+        //add dinner eating out items to array
+        var dinner_eat_out_items = $(wrapper).next().next().find('.expense_input'); 
+        var dinner_eat_out_array = [];
+        $(dinner_eat_out_items).each(function () {
+            dinner_eat_out_array.push($(this).val());
+        });
+        console.log(dinner_eat_out_array); 
+
+        //clear display box 
         $(display_wrapper).find('ul.recipe_list').children("li").remove(); 
         $(display_wrapper).find('ul.expenses_list').children("li").remove(); 
 
         while(true) {
+        //iterate through breakfast_cook_array and display links for bookmarked recipes
+        if ( breakfast_cook_array !==  null ) { 
+            breakfast_cook_array.forEach(function(element) {
+                if( bookmarks.indexOf(element) > -1 )
+                    $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(element)+">"+element+"</a>"+"</li>");
+            });
+        }
+        //iterate through breakfast_eat_out_array and display venues 
+        if (breakfast_eat_out_array !==  null) {
+            breakfast_eat_out_array.forEach(function(element) {
+                $(display_wrapper).find("ul.expenses_list").append("<li>"+element+"</li>");
+                });
+        }
 
-        //display links for bookmarked recipes and eating out expenses
-        if ( recipe_breakfast !==  undefined && recipe_breakfast !== "" && bookmarks.indexOf(recipe_breakfast) > -1) { 
-            $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(recipe_breakfast)+">"+recipe_breakfast+"</a>"+"</li>");
-            console.log('breakfast recipe ' + recipe_breakfast); }  
-         
-    
-        if (expense_breakfast !==  undefined && expense_breakfast !== "") {
-            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_breakfast+"</li>");
-            console.log('breakfast expense ' + expense_breakfast); }  
+        //iterate through lunch_cook_array and display links for bookmarked recipes
+        if ( lunch_cook_array !==  null ) { 
+            lunch_cook_array.forEach(function(element) {
+                if( bookmarks.indexOf(element) > -1 )
+                    $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(element)+">"+element+"</a>"+"</li>");
+            });
+        }
+        //iterate through lunch_eat_out_array and display venues 
+        if (lunch_eat_out_array !==  null) {
+            lunch_eat_out_array.forEach(function(element) {
+                $(display_wrapper).find("ul.expenses_list").append("<li>"+element+"</li>");
+            });
+        }
 
-        if (recipe_lunch !==  undefined && recipe_lunch !== "" && bookmarks.indexOf(recipe_lunch) > -1) {
-            $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(recipe_lunch)+">"+recipe_lunch+"</a>"+"</li>");
-            console.log('lunch recipe ' + recipe_lunch); } 
-
-        if (expense_lunch !==  undefined && expense_lunch !== "") {
-            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_lunch+"</li>");
-            console.log('lunch expense ' + expense_lunch); } 
-
-        if (recipe_dinner !==  undefined && recipe_dinner !== "" && bookmarks.indexOf(recipe_dinner) > -1) {
-            $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(recipe_dinner)+">"+recipe_dinner+"</a>"+"</li>"); 
-            console.log('dinner recipe ' + recipe_dinner);} 
-
-        if (expense_dinner !==  undefined && expense_dinner !== "") {
-            $(display_wrapper).find("ul.expenses_list").append("<li>"+expense_dinner+"</li>");
-            console.log('dinner expense ' + expense_dinner); } 
-
+        //iterate through dinner_cook_array and display links for bookmarked recipes
+        if ( dinner_cook_array !==  null ) { 
+            dinner_cook_array.forEach(function(element) {
+                if( bookmarks.indexOf(element) > -1 )
+                    $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+findURL(element)+">"+element+"</a>"+"</li>");
+            });
+        }
+        //iterate through dinner_eat_out_array and display venues 
+        if (dinner_eat_out_array !==  null) {
+            dinner_eat_out_array.forEach(function(element) {
+                $(display_wrapper).find("ul.expenses_list").append("<li>"+element+"</li>");
+            });
+        }
+        
         break;
-
         }
 
         function findURL(recipe){
