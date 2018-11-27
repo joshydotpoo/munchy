@@ -1,7 +1,7 @@
 function initRecipeCards() {
   var initUser = getUser();
-  $(".rc").click(function() {
-    window.location = $(this).data("link");
+  $(".rc > *").not(document.getElementsByClassName("rc_action")).click(function() {
+    window.location = $(this).parents(".rc").data("link");
   });
   $(".rc").each(function(index) {
     var title = $(this).find(".rcm_title").html();
