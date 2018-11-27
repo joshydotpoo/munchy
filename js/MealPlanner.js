@@ -1,5 +1,5 @@
 class MealPlannerObject {
-  constructor(id, db) {
+  constructor(id) {
     this.id = id;
     this.meals = new Array();
     this.load();
@@ -74,7 +74,7 @@ class MealObject {
     this.name = name; // name of the recipe
     this.day  =  day; // monday -> sunday
     this.type = type; // breakfast/lunch/dinner
-    this.prep = prep; // either EAT_OUT or COOK
+    this.prep = prep; // either 0 = EAT_OUT or 1 = COOK
     this.cost = -1;
     this.url = "";
   }
