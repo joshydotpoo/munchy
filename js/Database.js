@@ -90,7 +90,7 @@ class User {
     this.username = username;
     this.password = "";
     this.bookmarks = new Array();
-    this.database = database;
+    // this.database = database;
     this.getUpdate();
     this.update();
   }
@@ -114,7 +114,7 @@ class User {
     return JSON.stringify(this);
   }
   getUpdate() {
-    var db = this.database;
+    var db = new Database();
     db.getUpdate();
     if(db.getValue(this.username) != -1) { // exists
       var jsonString = JSON.parse(db.getObject(this.username));
@@ -126,7 +126,8 @@ class User {
     }
   }
   update() {
-    var db = this.database;
+    var db = new Database();
+    db.getUpdate();
     if(db.getValue(this.username) != -1) {
       db.changeObjectValue(this.username, this.toString());
       db.update();
@@ -143,22 +144,3 @@ function getUser() {
     return null;
   }
 }
-
-/*
-
-Database db = ... ;
-MealPlannerObject mealPlanner = new MealPlannerObject(username);
-// breakfast
-for each meal
-  MealObject meal = new MealObject(...);
-  mealPlanner.addMeal(meal, day);
-// lunch ...
-// dinner ...
-db.insert(key, mealPlanner.toString());
-
-
-mealPlanner = db.getObject("meal planner");
-monday = mealPlanner.getDay("monday");
-monday.getBreakfastMeals()
-
-*/

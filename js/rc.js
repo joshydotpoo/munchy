@@ -57,9 +57,27 @@ function addAllRC(recipesString) {
     createRC(recipeData[0], recipeData[1], recipeData[2]);
   }
 }
+function findRC(title, recipesString) {
+  var recipes = recipesString.split("|");
+  var found = false;
+  for(var i = 0; i < recipes.length; i++) {
+    var recipe = recipes[i];
+    var recipeData = recipe.split(":");
+    var recipeTitle = recipeData[0];
+    if(recipeTitle == title)
+      return recipeData;
+  }
+  return null;
+}
 function createRC(title, imagePath, recipeLink) {
   imagePath = "recipes/" + imagePath;
   recipeLink = "recipes/" + recipeLink;
   var rcHTML = "<div class='rc' data-link='"+recipeLink+"'><div class='rc_preview' style='background-image: url("+imagePath+")'><div class='rcp_propic'></div></div><div class='rc_main'><div class='rcm_title'>"+title+"</div><div class='rcm_desc'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div></div><div class='rc_action'><div class='rca_bookmark'><i class='material-icons'>bookmark_border</i></div></div></div>";
+  $(".container").append(rcHTML);
+}
+function createBookmarkRC(title, imagePath, recipeLink) {
+  imagePath = "recipes/" + imagePath;
+  recipeLink = "recipes/" + recipeLink;
+  var rcHTML = "<div class='rc' data-link='"+recipeLink+"'><div class='rc_preview' style='background-image: url("+imagePath+")'><div class='rcp_propic'></div></div><div class='rc_main'><div class='rcm_title'>"+title+"</div><div class='rcm_desc'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div></div><div class='rc_action'></div></div>";
   $(".container").append(rcHTML);
 }
