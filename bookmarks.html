@@ -13,6 +13,12 @@
     * {
       font-family: "Work Sans", sans-serif;
     }
+    .hdr_back {
+      visibility: hidden;
+    }
+    .header:not["backable"] > .hdr_back {
+      visibility: hidden;
+    }
     .active_page {
         text-decoration:underline;
     }
