@@ -13,6 +13,7 @@
   background-image: url("https://static1.squarespace.com/static/590be7fd15d5dbc6bf3e22d0/590bef6f46c3c4d418c28dac/5a54e3704192021aeb43359c/1531857701452/Screen+Shot+2018-01-09+at+10.14.18+AM.png?format=1000w");
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 .rcp_image {
   height: 100%;
