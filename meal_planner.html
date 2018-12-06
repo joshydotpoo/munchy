@@ -561,7 +561,7 @@
 	$(add_button_cook).click(function(e){ //on cook button click
 		e.preventDefault();
         var wrapper = $(this).parent().parent();
-		$(wrapper).find(".cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="e.g fried rice"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
+		$(wrapper).find(".cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="enter recipe or select bookmark"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
          });
 
     $(add_button_eat_out).click(function(e){ //on eat out button click
