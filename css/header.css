@@ -19,10 +19,11 @@
   /*margin: 10px; */
   width: 30%;
 }
+
 .hdr_nav {
   width: 35%;
   float: right;
-  text-align: right; 
+  text-align: right;
   /*background: pink; */
   border-bottom-left-radius: 5px;
   padding-left: 25px;
@@ -32,7 +33,7 @@
   height: 45px;
   margin: 10px;
   vertical-align: middle;
-  text-align: center; 
+  text-align: center;
 }
 .hdr_link a {
   text-decoration: none;
