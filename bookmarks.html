@@ -51,7 +51,7 @@
       if(localStorage.getItem("username") == null)
         window.location = "login.html";
       initHeaderNav();
-      initRecipeCards();
+
       const database = new Database();
       const user = new User(localStorage.getItem("username"), database);
       var recipeData = "Peanut butter and Jelly Sandwich:pbj.jpg:BFRecipe1.html|Tomato Egg Stirfry:rice1.jpg:BFRecipe2.html|Cheese Omelette:egg5.jpg:BFRecipe3.html|Homemade Burger:bg5.jpg:DRecipe1.html|Seasoned Chicken Breast:chick1.jpg:DRecipe2|Korean-style Gochujang Ground Beef:gb1.jpg:DRecipe3|Chicken Lettuce Wrap:chickL1.jpg:Lunch1.html|Microwave Bagel Sandwich:bag2.jpg:Lunch2.html|Spinach Artichoke Turkey Panini:turk1.jpg:Lunch3.html";
@@ -60,6 +60,7 @@
         var data = findRC(title, recipeData);
         createBookmarkRC(data[0], data[1], data[2]);
       }
+      initRecipeCards();
     });
   </script>
 </head>

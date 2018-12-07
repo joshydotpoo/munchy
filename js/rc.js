@@ -18,6 +18,8 @@ function initRecipeCards() {
         .html("bookmark_border")
         .css("color", "#3e3e42");
         getUser().removeBookmark($(this).parents(".rc").find(".rcm_title").html());
+        if($(this).parents(".rc").hasClass("rcb"))
+          $(this).parents(".rc").remove();
     } else { // activate
       $(this).addClass("activeBM");
       $(this)
@@ -78,6 +80,6 @@ function createRC(title, imagePath, recipeLink) {
 function createBookmarkRC(title, imagePath, recipeLink) {
   imagePath = "recipes/" + imagePath;
   recipeLink = "recipes/" + recipeLink;
-  var rcHTML = "<div class='rc' data-link='"+recipeLink+"'><div class='rc_preview' style='background-image: url("+imagePath+")'><div class='rcp_propic'></div></div><div class='rc_main'><div class='rcm_title'>"+title+"</div><div class='rcm_desc'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div></div><div class='rc_action'></div></div>";
+  var rcHTML = "<div class='rc rcb' data-link='"+recipeLink+"'><div class='rc_preview' style='background-image: url("+imagePath+")'><div class='rcp_propic'></div></div><div class='rc_main'><div class='rcm_title'>"+title+"</div><div class='rcm_desc'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin</div></div><div class='rc_action'><div class='rca_bookmark'><i class='material-icons'>bookmark_border</i></div></div></div>";
   $(".container").append(rcHTML);
 }

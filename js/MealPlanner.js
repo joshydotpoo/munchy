@@ -1,28 +1,35 @@
-class MealPlannerObject {
+class MealPlanner {
   constructor(id) {
     this.id = id;
     this.meals = new Array();
     this.load();
     this.save();
+    this.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   }
   getDay(day) {
     // return array of recipes for that day
-    switch(day) {
-      case "monday":
-        return this.days[0];
-      case "tuesday":
-        return this.days[1];
-      case "wednesday":
-        return this.days[2];
-      case "thursday":
-        return this.days[3];
-      case "friday":
-        return this.days[4];
-      case "saturday":
-        return this.days[5];
-      case "sunday":
-        return this.days[6];
-    }
+    var meal_array = new Array();
+    this.meals.forEach(function(meal) {
+      if(meal.day == day)
+        meal_array.push(meal);
+    });
+    // switch(day) {
+    //   case "monday":
+    //     return this.meals[0];
+    //   case "tuesday":
+    //     return this.meals[1];
+    //   case "wednesday":
+    //     return this.meals[2];
+    //   case "thursday":
+    //     return this.meals[3];
+    //   case "friday":
+    //     return this.meals[4];
+    //   case "saturday":
+    //     return this.meals[5];
+    //   case "sunday":
+    //     return this.meals[6];
+    // }
+    return meal_array;
     console.log("ERROR: incorrect day is entered in MealPlannerObject with username: " + this.username);
   }
   getBreakfastMeals(day) {
@@ -37,6 +44,16 @@ class MealPlannerObject {
 
   addMeal(mealObj) {
     this.meals.push(mealObj);
+    this.save();
+  }
+
+  clearDay(day) {
+    var temp = new Array();
+    this.meals.forEach(function(meal) {
+      if(meal.day != day)
+        temp.push(meal);
+    });
+    this.meals = temp;
     this.save();
   }
 
@@ -70,11 +87,13 @@ class MealPlannerObject {
   }
 }
 class MealObject {
+
+
   constructor(name, day, type, prep) {
     this.name = name; // name of the recipe
     this.day  =  day; // monday -> sunday
     this.type = type; // breakfast/lunch/dinner
-    this.prep = prep; // either 0 = EAT_OUT or 1 = COOK
+    this.prep = prep; // "cook"
     this.cost = -1;
     this.url = "";
   }

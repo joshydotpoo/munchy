@@ -16,6 +16,7 @@
   <link href="css/fab.css" rel="stylesheet" />
 <script type="text/javascript" src="js/headernav.js"></script>
   <script src="js/Database.js"></script>
+  <script src="js/MealPlanner.js"></script>
 
   <style>
       * {
@@ -534,7 +535,7 @@
     const database = new Database();
     const user = new User(localStorage.getItem("username"),database);
     var mp = new MealPlanner("mpid"+user.username);
-    
+
     // Get the <datalist> and <input> elements.
     var dataList = document.getElementById('bookmarks_list');
     var input = document.getElementById('recipe_name');
@@ -558,11 +559,50 @@
       var submit_form            = $(".submit_form_button"); //Add button ID
       var clear_form             = $(".clear_form_button"); //Add button ID
 
+
+      mp.load();
+      var days = mp.days;
+      days.forEach(function(day) {
+        var meals = mp.getDay(day);
+        var cooked_meals = new Array();
+        var eatout_meals = new Array();
+        if(meals != undefined) {
+          meals.forEach(function(meal) {
+            console.log("adding for day: " + day + ", meal: " + JSON.stringify(meal));
+            if(meal.prep == "cook") {
+              $(display_wrapper).find("ul.recipe_list").append("<li>"+ "<a href="+meal.url+">"+meal.name+"</a>"+"</li>");
+              if(meal.type == "Breakfast") {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(1) > div > div.cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="enter recipe or select bookmark" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              } else if(meal.type == "Lunch") {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(2) > div > div.cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="enter recipe or select bookmark" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              } else {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(3) > div > div.cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="enter recipe or select bookmark" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              }
+            } else {
+              $(display_wrapper).find("ul.expenses_list").append("<li>"+meal.name+"</li>");
+              if(meal.type == "Breakfast") {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(1) > div > div.eating_out").append('<div class="expense_input"><strong>Eating Out: </strong><input class="expense_input" type="text" id="eating_out" placeholder="e.g. Subway" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              } else if(meal.type == "Lunch") {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(2) > div > div.eating_out").append('<div class="expense_input"><strong>Eating Out: </strong><input class="expense_input" type="text" id="eating_out" placeholder="e.g. Subway" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              } else {
+                $("#" + day + "> div:nth-child(1) > div:nth-child(3) > div > div.eating_out").append('<div class="expense_input"><strong>Eating Out: </strong><input class="expense_input" type="text" id="eating_out" placeholder="e.g. Subway" value=\"'+meal.name+'\"/><a href="#" class="remove_field" style="color:red"> remove </a></div>');
+              }
+            }
+          });
+
+        }
+
+      });
+
+
+
+
+
 	$(add_button_cook).click(function(e){ //on cook button click
-		e.preventDefault();
-        var wrapper = $(this).parent().parent();
+    e.preventDefault();
+    var wrapper = $(this).parent().parent();
 		$(wrapper).find(".cook").append('<div class="recipe_input"><strong>Cooking: </strong><input class="recipe_input" type="text" id="recipe_name" list="bookmarks_list" placeholder="enter recipe or select bookmark"/><a href="#" class="remove_field" style="color:red"> remove </a></div>'); //add input box
-         });
+  });
 
     $(add_button_eat_out).click(function(e){ //on eat out button click
 		e.preventDefault();
@@ -571,13 +611,33 @@
         });
 
 	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-		e.preventDefault(); $(this).parent('div').remove(); x--;
+		e.preventDefault(); $(this).parent('div').remove(); //x--;
 	});
 
     $(submit_form).click(function(e){ //on submit button click, display form input
 
         var wrapper = $(this).parent().find("div.input_fields_wrap").first();
         var display_wrapper = $(this).parent().next().children("div");
+        mp.clearDay($('li.active a').html());
+        $("input.recipe_input").each(function() {
+          // save recipes
+          var name = $(this).val();
+          var url  = findURL(name);
+          var mealType  = $(this).parent().parent().parent().parent().find("h3").html();
+          var day = $('li.active a').html();
+          var meal = new MealObject(name, day, mealType, "cook");
+          meal.setURL(url);
+          mp.addMeal(meal);
+        });
+
+        $("input.expense_input").each(function() {
+          // save eating out
+          var name = $(this).val();
+          var mealType  = $(this).parent().parent().parent().parent().find("h3").html();
+          var day = $('li.active a').html();
+          var meal = new MealObject(name, day, mealType, "eat out");
+          mp.addMeal(meal);
+        });
 
         //add breakfast recipes to array
         var breakfast_cook_items = $(wrapper).find(".recipe_input");
@@ -713,6 +773,8 @@
         $(this).parent().next().children("div").find('ul.expenses_list').children("li").remove();
         $(this).parent("div").find("div.input_fields_wrap").find("ul.recipe_list").children().remove();
         $(this).parent("div").find("div.input_fields_wrap").find("ul.expense_list").children().remove();
+        mp.clearDay($('li.active a').html());
+
     });
 
     });
